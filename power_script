@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# script to check battery power every 60 seconds and broadcast message to all cli users when it reaches 10%
+
+while true; do
+	pc=$(upower -d | grep percentage | head -n1 | awk '{print $2}' | sed 's/%//')
+		if (( $pc < 48 )); then
+			wall "Battery is less than $pc%"
+			sleep 3
+		fi
+done

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+item1="https://www.mirafit.co.uk/mirafit-m3-strongman-yoke.html"
+item2="https://www.mirafit.co.uk/mirafit-m2-350kg-power-rack.html" 
+
+curl -s $item1 | grep Availability | grep -i In > /dev/null 2>&1
+
+if [ $? -eq 0 ]
+then
+	echo "$item1 in stock"
+else
+	echo "$item1 not in stock"
+fi
+
+curl -s $item2 | grep Availability | grep -i In > /dev/null 2>&1
+
+if [ $? -eq 0 ]
+then
+	        echo "$item2 in stock"
+	else
+		        echo "$item2 not in stock"
+		fi

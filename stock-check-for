@@ -1,0 +1,16 @@
+# Script to curl a list of urls and check for whether the item is in stock
+# If it is in stock then an email will be sent
+
+#!/bin/bash
+
+for i in $(cat /home/matt/bin/stock-list); do curl -s $i | egrep -e 'InStock| in-stock' > /dev/null 2>&1
+
+if [ $? -eq 0 ]
+then
+#        echo "$i in stock"
+	echo "$i in stock" | mail -s "Item in stock" mrigby83@gmail.com
+#else
+#        echo "$item1 not in stock"
+fi;
+done
+

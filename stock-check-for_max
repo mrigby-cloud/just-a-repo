@@ -3,7 +3,7 @@
 
 #!/bin/bash
 
-for i in $(cat /home/matt/bin/stock-list); do curl -s $i | egrep -e 'InStock| in-stock|instock' > /dev/null 2>&1
+for i in $(cat /home/matt/bin/stock-list_max); do curl -s $i | egrep -e '/InStock' > /dev/null 2>&1
 
 if [ $? -eq 0 ]
 then

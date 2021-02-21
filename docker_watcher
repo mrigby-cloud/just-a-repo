@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# nginx-proxy docker container on vps seems to exit with a code 2 when a https scanner "zgrab" performs a GET on an non-existent page. While this is investigated in more depth this script will perform a curl on the dokuwiki homepage and restart all containers if it throws a 503 unavailable error.
+
+curl http://wiki.mrigby.cloud/ > /dev/null 2>&1
+
+if [ $? -ne 0 ]
+then
+	docker start nginx-proxy
+	docker start dokuwiki
+	docker start kanboard	
+fi

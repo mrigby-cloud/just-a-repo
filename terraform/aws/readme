@@ -1,0 +1,10 @@
+These terraform scripts will create an ec2 instance, vpc security group and a key pair (generated locally) in aws. The ec2 instance will be set to use the key pair and the vpc security group. The security group will allow ssh traffic in.
+The ec2 instance will also run a command using the "remote-exec" provisioner in order to touch a file in /tmp. The purpose of this is to ensure that the instance is up and running before running a "local-exec", which will eventually kick off an ansible playbook to configure the machine.
+
+
+
+Points of interest for future reference:
+The "vpc_security_group_ids" is dynamically allocated by using the resource attribute reference which in this case is "aws_security_group.stock-check-sec-group.id"
+
+To connect to the instance with ssh use
+sudo ssh -i ~/.ssh/aws_id_rsa ec2-user@54.81.220.117 #sudo due to key permissions in wsl

@@ -1,6 +1,7 @@
 ---
 - name: update web server
   hosts: all
+
   tasks:
     - name: download git
       become: yes
@@ -8,6 +9,7 @@
         name: git
         state: latest
         update_cache: true
+
     - name: clone git repo
       become: no
       git:
@@ -15,6 +17,19 @@
         version: master
         dest: ./just-a-repo
         accept_hostkey: yes
+
+    - name: Add apache
+      become: yes
+      package:
+        name: httpd
+        state: present
+
+    - name: Start apache
+      become: yes
+      service:
+        name: httpd
+        state: started
+        enabled: yes
       
   #tasks:
   #- name: write a test file in /tmp

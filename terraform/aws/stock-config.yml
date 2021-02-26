@@ -1,0 +1,23 @@
+---
+- name: update web server
+  hosts: all
+  tasks:
+    - name: download git
+      become: yes
+      yum:
+        name: git
+        state: latest
+        update_cache: true
+    - name: clone git repo
+      become: no
+      git:
+        repo: git@github.com:mrigby-cloud/just-a-repo.git
+        version: master
+        dest: ./just-a-repo
+        accept_hostkey: yes
+      
+  #tasks:
+  #- name: write a test file in /tmp
+  #  template:
+  #   src: ansible_test_file
+  #    dest: /tmp/

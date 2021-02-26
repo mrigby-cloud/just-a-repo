@@ -25,6 +25,12 @@ resource "aws_security_group" "stock-check-sec-group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_instance" "stock-check" {
@@ -41,6 +47,9 @@ resource "aws_instance" "stock-check" {
       user        = "ec2-user"
       private_key = file("~/.ssh/aws_id_rsa")
     }
+  }
+  provisioner "local-exec" {
+    command = "sudo ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user -i '${self.public_ip},' --private-key ~/.ssh/aws_id_rsa stock-config.yml"
   }
 
   tags = {

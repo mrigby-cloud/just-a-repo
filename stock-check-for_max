@@ -8,7 +8,7 @@ for i in $(cat /home/matt/bin/stock-list_max); do curl -s $i | egrep -e '/InStoc
 if [ $? -eq 0 ]
 then
 #        echo "$i in stock"
-	echo "$i in stock" | mail -s "Item in stock" mrigby83@gmail.com
+	echo "$i in stock" | mail -s "Item in stock" notarealaddress_5445ffeef@gmail.com
 #else
 #        echo "$item1 not in stock"
 fi;

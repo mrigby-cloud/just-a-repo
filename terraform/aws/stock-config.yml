@@ -11,7 +11,7 @@
     - name: clone git repo
       become: no
       git:
-        repo: git@github.com:mrigby-cloud/just-a-repo.git
+        repo: 'https://github.com/mrigby-cloud/just-a-repo.git'
         version: master
         dest: ./just-a-repo
         accept_hostkey: yes

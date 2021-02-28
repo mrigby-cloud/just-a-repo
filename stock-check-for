@@ -3,14 +3,14 @@
 
 #!/bin/bash
 
-cat /dev/null > /tmp/stock-result
+cat /dev/null > /var/www/html/index.html
 for i in $(cat ~/just-a-repo/stock-list); do curl -s $i | egrep -e 'InStock| in-stock|instock' > /dev/null 2>&1
 
 if [ $? -eq 0 ]
 then
-        echo "$i in stock" at $(date) >> /tmp/stock-result
+        echo "$i in stock" at $(date) >> /var/www/html/index.html
 #       echo "$i in stock" | mail -s "Item in stock" notarealaddress_5445ffeef@gmail.com
 else
-        echo "$i not in stock" at $(date) >> /tmp/stock-result
+        echo "$i not in stock" at $(date) >> /var/www/html/index.html
 fi;
 done

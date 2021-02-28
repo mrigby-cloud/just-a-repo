@@ -24,6 +24,14 @@
         name: httpd
         state: present
 
+    - name: Add stock check script to root crontab
+      become: yes
+      cron:
+        name: "stock check script"
+        minute: *
+        job: "/home/ec2-user/just-a-repo/stock-check-for"
+        user: root
+
     - name: Start apache
       become: yes
       service:

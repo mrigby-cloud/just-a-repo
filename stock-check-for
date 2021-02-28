@@ -8,7 +8,7 @@ for i in $(cat /home/ec2-user/just-a-repo/stock-list); do curl -s $i | egrep -e 
 
 if [ $? -eq 0 ]
 then
-        echo "$i in stock" at $(date) >> /var/www/html/index.html
+        echo "<a href=$i>$i</a> in stock" at $(date) >> /var/www/html/index.html
         echo "<br>" >> /var/www/html/index.html
 #       echo "$i in stock" | mail -s "Item in stock" notarealaddress_5445ffeef@gmail.com
 else

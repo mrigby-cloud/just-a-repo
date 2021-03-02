@@ -1,5 +1,10 @@
-These terraform scripts will create an ec2 instance, vpc security group and a key pair (generated locally) in aws. The ec2 instance will be set to use the key pair and the vpc security group. The security group will allow ssh traffic in.
-The ec2 instance will also run a command using the "remote-exec" provisioner in order to touch a file in /tmp. The purpose of this is to ensure that the instance is up and running before running a "local-exec", which will eventually kick off an ansible playbook to configure the machine.
+These terraform scripts will create an ec2 instance, vpc security group and a key pair (generated locally) in aws. 
+The ec2 instance will be set to use the key pair and the vpc security group. 
+The security group will allow ssh and web traffic in, and all traffic out.
+The ec2 instance will also run a command using the "remote-exec" provisioner in order to touch a file in /tmp. 
+The purpose of this is to ensure that the instance is up and running before running a "local-exec", 
+which will eventually kick off an ansible playbook to configure the machine.
+The ansible playbook will download git and apache, clone my git repo, install the stock checker script to the cron, and start apache.
 
 
 
